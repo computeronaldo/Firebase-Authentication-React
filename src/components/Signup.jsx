@@ -7,7 +7,7 @@ const Signup = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const passwordConfirmRef = useRef(null);
-  const { signup } = useAuth();
+  const { signup, currentUser } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -24,6 +24,7 @@ const Signup = () => {
     try {
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
+      localStorage.setItem("token", currentUser.accessToken);
     } catch (err) {
       setError("Failed to create an account");
     }

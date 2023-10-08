@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-  const { login } = useAuth();
+  const { login, currentUser } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -19,6 +19,7 @@ const Login = () => {
     try {
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
+      localStorage.setItem("token", currentUser.accessToken);
     } catch (err) {
       setError("Failed to login");
     }

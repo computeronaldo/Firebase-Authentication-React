@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { auth } from "../firebase";
 
@@ -24,6 +25,10 @@ export const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
+  const logout = () => {
+    return signOut(auth);
+  };
+
   // attaching an observer to global auth object on the initial render
   // Now if user sign's up the callback method for onAuthStateChanged
   // get's called and set's our current user to signed up user.
@@ -40,6 +45,7 @@ export const AuthProvider = ({ children }) => {
     currentUser,
     signup,
     login,
+    logout,
   };
 
   return (
