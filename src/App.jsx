@@ -2,12 +2,15 @@ import { Container } from "react-bootstrap";
 import Signup from "./components/Signup";
 import Dashboard, { loader as dashboardLoader } from "./components/Dashboard";
 import Login from "./components/Login";
+import ForgotPassword from "./components/ForgotPassword";
+import ErrorPage from "./components/ErrorPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Dashboard />,
+    errorElement: <ErrorPage />,
     loader: dashboardLoader,
   },
   {
@@ -17,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/forgot-password",
+    element: <ForgotPassword />,
   },
 ]);
 
